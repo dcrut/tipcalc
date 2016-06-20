@@ -19,7 +19,27 @@ app.get('/tipcalc', function(req, res){
 });
 
 app.post('/tipcalc', function(req, res){
-  tip = req.body.tip;
+  const tips = ['5', '10', '15', '20'];
+  const tip = req.body.tip;
+  const amount = req.body.amount * 1;
+  let r = 0;
+  let result = 0;
+  // console.log('tip:', tip, 'amount:', amount);
 
-  res.render('calc', {tips, result: 0});
+  switch(tips[tip]){
+    case '5':
+      result = amount * .05;
+      break;
+    case '10':
+      result = amount * .1;
+      break;
+    case '15':
+      result = amount * .15;
+      break;
+    case '20':
+      result = amount * .20;
+  }
+
+  //res.render('calc', {tips, amount, result: result});
+  res.render('calc', {tips, result: result});
 });
